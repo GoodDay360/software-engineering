@@ -1,9 +1,9 @@
 package edu.itc.se.lab01.task3;
 
 
-public interface OrderQueue {
+public interface OrderQueue<T> {
 
-  void put(Order order) throws InterruptedException;
+  void put(T item) throws InterruptedException;
 
-  Order take() throws InterruptedException;
+  T take() throws InterruptedException;
 }

@@ -5,21 +5,21 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.atomic.AtomicInteger;
 
 
-class ArrayBlockingQueueBuffer implements OrderQueue{
+class ArrayBlockingQueueBuffer<T> implements OrderQueue<T>{
 
-  private final ArrayBlockingQueue<Order> queue;  
+  private final ArrayBlockingQueue<T> queue;  
 
   public ArrayBlockingQueueBuffer(int capacity) {
     this.queue = new ArrayBlockingQueue<>(capacity);
   }
 
   @Override 
-  public void put(Order order) throws InterruptedException {
-    queue.put(order);
+  public void put(T item) throws InterruptedException {
+    queue.put(item);
   }
 
   @Override 
-  public Order take() throws InterruptedException {
+  public T take() throws InterruptedException {
     return queue.take();
   }
 }
@@ -35,7 +35,7 @@ public class Main2 {
     AtomicInteger processed_order_count = new AtomicInteger(0);
 
     Random random = new Random();
-    ArrayBlockingQueueBuffer buffer = new ArrayBlockingQueueBuffer(capacity);
+    ArrayBlockingQueueBuffer<Order> buffer = new ArrayBlockingQueueBuffer<>(capacity);
 
     long startTime = System.currentTimeMillis();
 

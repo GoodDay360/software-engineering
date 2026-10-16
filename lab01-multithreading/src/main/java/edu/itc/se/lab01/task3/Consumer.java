@@ -7,10 +7,10 @@ public class Consumer implements Runnable {
 
   int consumer_id;
   int capacity;
-  OrderQueue queue;
+  OrderQueue<Order> queue;
   AtomicInteger processed_order_count = new AtomicInteger(0);
 
-  Consumer(int consumer_id, int capacity, AtomicInteger processed_order_count, OrderQueue queue){
+  Consumer(int consumer_id, int capacity, AtomicInteger processed_order_count, OrderQueue<Order> queue){
     this.consumer_id = consumer_id;
     this.capacity = capacity;
     this.queue = queue;

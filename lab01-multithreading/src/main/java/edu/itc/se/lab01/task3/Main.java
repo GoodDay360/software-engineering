@@ -4,8 +4,8 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 
-class BoundedBuffer implements OrderQueue {
-  private final ArrayDeque<Order> item_arr = new ArrayDeque<>();
+class BoundedBuffer<T> implements OrderQueue<T> {
+  private final ArrayDeque<T> item_arr = new ArrayDeque<>();
   private final int capacity;
 
   public BoundedBuffer(int capacity) {
@@ -17,24 +17,24 @@ class BoundedBuffer implements OrderQueue {
   }
 
   @Override
-  public synchronized void put(Order order) throws InterruptedException {
+  public synchronized void put(T item) throws InterruptedException {
     while (item_arr.size() == capacity) {
       wait();
     }
 
-    item_arr.addLast(order);
+    item_arr.addLast(item);
 
     notifyAll();
   }
 
 
   @Override
-  public synchronized Order take() throws InterruptedException {
+  public synchronized T take() throws InterruptedException {
     while (item_arr.isEmpty()) {
       wait();
     }
 
-    Order item = item_arr.pollFirst();
+    T item = item_arr.pollFirst();
 
     notifyAll();
 
@@ -53,7 +53,7 @@ public class Main {
     AtomicInteger processed_order_count = new AtomicInteger(0);
 
     Random random = new Random();
-    BoundedBuffer buffer = new BoundedBuffer(capacity);
+    BoundedBuffer<Order> buffer = new BoundedBuffer<>(capacity);
 
     long startTime = System.currentTimeMillis();
 

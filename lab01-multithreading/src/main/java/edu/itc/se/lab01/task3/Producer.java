@@ -6,10 +6,10 @@ public class Producer implements Runnable {
 
   int numberOfOrders;
   int numberOfConsumers;
-  OrderQueue queue;
+  OrderQueue<Order> queue;
 
 
-  Producer(int numberOfOrders, int numberOfConsumers, OrderQueue queue){
+  Producer(int numberOfOrders, int numberOfConsumers, OrderQueue<Order> queue){
     this.numberOfOrders = numberOfOrders;
     this.numberOfConsumers = numberOfConsumers;
     this.queue = queue;
