@@ -4,11 +4,11 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 
-class BoundedBuffer<T> implements OrderQueue<T> {
+class TestBoundedBuffer<T> implements OrderQueue<T> {
   private final ArrayDeque<T> item_arr = new ArrayDeque<>();
   private final int capacity;
 
-  public BoundedBuffer(int capacity) {
+  public TestBoundedBuffer(int capacity) {
     if (capacity <= 0) {
       throw new IllegalArgumentException("Capacity must be positive");
     }
@@ -53,7 +53,7 @@ public class MainTest {
     AtomicInteger processed_order_count = new AtomicInteger(0);
 
     Random random = new Random();
-    BoundedBuffer<Order> buffer = new BoundedBuffer<>(capacity);
+    TestBoundedBuffer<Order> buffer = new TestBoundedBuffer<>(capacity);
 
     long startTime = System.currentTimeMillis();
 
