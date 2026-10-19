@@ -17,3 +17,12 @@ Explains why `while + notifyAll()` is required.
 - `while + notifyAll()` is required because since inside the while there a wait()
 - `notifyAll()` is telling all the while loop that using the `wait()` to check it condition again.
 - Without `notifyAll()` the while loop will stuck there a the `wait()` won't release.
+
+# Task 4
+| Fixed pool | Virtual threads |
+|---|---|
+| Only 20 tasks run concurrently | Potentially all 500 tasks run concurrently |
+| Uses 20 platform threads | Uses lightweight virtual threads |
+| Remaining tasks wait in a queue | Many tasks can wait efficiently |
+| Approximately 5 seconds | Often close to 200–500 ms |
+| Good when limiting concurrency is important | Good for many blocking I/O tasks |

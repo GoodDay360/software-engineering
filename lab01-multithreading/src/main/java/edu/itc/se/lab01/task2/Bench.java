@@ -130,6 +130,9 @@ public class Bench {
 
 
   public static void main(String[] args) throws InterruptedException {
+    // UnsafeCounter-22s value=3,649,999 correct=false 283 ms
+    // UnsafeCounter-22s value=5,577,127 correct=false 211 ms
+    // UnsafeCounter-22s value=6,398,000 correct=false 287 ms
     run("UnsafeCounter", new UnsafeCounter());
     run("SynchronizedCounter", new SynchronizedCounter());
     run("LockCounter", new LockCounter());
